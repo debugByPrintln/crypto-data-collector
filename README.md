@@ -2,6 +2,7 @@
 
 ## Автор
 Мельников Никита Сергеевич
+Выполнение тестового задания: https://docs.google.com/document/d/1wW70asO6XmOLXWlnTDraFwZLavGuoIAHvppBAD6Pke4/edit?tab=t.0
 
 ## Описание
 
