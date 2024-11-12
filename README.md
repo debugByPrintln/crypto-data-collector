@@ -49,13 +49,15 @@ docker-compose up --build
 ## Работа приложения 
 
 Приложению потребуется время, чтобы развернуть Elasticsearch в Docker.
-После запуска, в терминале должна начать появляться информация, содержащая сведения о том, что документ с определенным ID был индексирован, а так же сведения о средней цене BTC за последний час и криптовалюте с наибольшем изменением цены за последние 24 часа.
+После запуска, в терминале должна начать появляться информация, содержащая сведения о том, что документ с определенным ID был индексирован, 
+а так же сведения о средней цене BTC (выбран в качестве примера) за последний час 
+и криптовалюте с наибольшем изменением цены за последние 24 часа.
 Эти сведения отмечаются в терминале символом "-->" для большей наглядности.
 Данная информация будет обновляться каждый N секунд (частота обновлений выставляется в поле DATA_GATHER_INTERVAL_IN_SECONDS в .env файле):
 
 Пример вывода приложения:
 ```
-crypto-data-collector  | -->     Executing data collection job at: 2024-11-12T08:28:28.856416845
+<div style="color:red;">crypto-data-collector  | -->     Executing data collection job at: 2024-11-12T08:28:28.856416845</div>
 crypto-data-collector  | Nov 12, 2024 8:28:29 AM org.elasticsearch.client.RestClient logResponse
 crypto-data-collector  | WARNING: request [HEAD http://elasticsearch:9200/crypto_data] returned 1 warnings: [299 Elasticsearch-7.17.0-bee86328705acaa9a6daede7140defd4d9ec56bd "Elasticsearch built-in security features are not enabled
 . Without authentication, your cluster could be accessible to anyone. See https://www.elastic.co/guide/en/elasticsearch/reference/7.17/security-minimal-setup.html to enable security."]
