@@ -1,5 +1,8 @@
 # Crypto Data Collector
 
+## Автор
+Мельников Никита Сергеевич
+
 ## Описание
 
 Crypto Data Collector — это приложение на Java, которое периодически собирает информацию о криптовалютах с помощью API CoinMarketCap и индексирует данные в Elasticsearch. 
