@@ -57,7 +57,7 @@ docker-compose up --build
 
 Пример вывода приложения:
 ```
-<p style="color:red;">crypto-data-collector  | -->     Executing data collection job at: 2024-11-12T08:28:28.856416845</p>
+crypto-data-collector  | -->     Executing data collection job at: 2024-11-12T08:28:28.856416845
 crypto-data-collector  | Nov 12, 2024 8:28:29 AM org.elasticsearch.client.RestClient logResponse
 crypto-data-collector  | WARNING: request [HEAD http://elasticsearch:9200/crypto_data] returned 1 warnings: [299 Elasticsearch-7.17.0-bee86328705acaa9a6daede7140defd4d9ec56bd "Elasticsearch built-in security features are not enabled
 . Without authentication, your cluster could be accessible to anyone. See https://www.elastic.co/guide/en/elasticsearch/reference/7.17/security-minimal-setup.html to enable security."]
