@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  elasticsearch:
+    image: docker.io/library/elasticsearch:7.17.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - elastic
+
+  crypto-data-collector:
+    build: .
+    container_name: crypto-data-collector
+    environment:
+      - ELASTICSEARCH_HOST=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    ports:
+      - "8080:8080"
+    networks:
+      - elastic
+    command: sh -c "mvn clean package -DskipTests && java -jar target/crypto-data-collector-1.0-SNAPSHOT-jar-with-dependencies.jar"
+
+networks:
+  elastic:
+    driver: bridge
