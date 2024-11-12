@@ -4,6 +4,7 @@ import com.cryptodatacollector.analysis.CryptoDataAnalyzer;
 
 import com.cryptodatacollector.scheduler.DataCollectionScheduler;
 import com.cryptodatacollector.service.CryptoDataService;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
@@ -24,8 +25,6 @@ public class Main {
      * @throws SchedulerException Если произошла ошибка при запуске планировщика задач.
      */
     public static void main(String[] args) throws SchedulerException {
-        String apiKey = "471b8e74-26e5-4a1c-89c3-1640a4716009";
-
         String elasticsearchHost = System.getenv("ELASTICSEARCH_HOST");
         if (elasticsearchHost == null) {
             elasticsearchHost = "http://localhost:9200";
@@ -35,7 +34,7 @@ public class Main {
                 RestClient.builder(HttpHost.create(elasticsearchHost))
         );
 
-        CryptoDataService cryptoDataService = new CryptoDataService(apiKey, client);
+        CryptoDataService cryptoDataService = new CryptoDataService(client);
         CryptoDataAnalyzer cryptoDataAnalyzer = new CryptoDataAnalyzer(client);
 
         DataCollectionScheduler scheduler = new DataCollectionScheduler(cryptoDataService, cryptoDataAnalyzer);

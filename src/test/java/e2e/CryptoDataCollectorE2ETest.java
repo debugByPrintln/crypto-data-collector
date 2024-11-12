@@ -3,6 +3,7 @@ package e2e;
 import com.cryptodatacollector.elastic.ElasticsearchClient;
 import com.cryptodatacollector.service.CryptoDataService;
 import com.google.gson.JsonArray;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,9 +30,10 @@ public class CryptoDataCollectorE2ETest {
     /**
      * Контейнер Elasticsearch, запускаемый с помощью Testcontainers.
      */
+
     @Container
     private static final ElasticsearchContainer elasticsearch = new ElasticsearchContainer(
-            DockerImageName.parse("docker.elastic.co/elasticsearch/elasticsearch:7.17.0")
+            DockerImageName.parse(Dotenv.load().get("DOCKER_IMAGE_NAME"))
     );
 
     private RestHighLevelClient client;
@@ -48,8 +50,7 @@ public class CryptoDataCollectorE2ETest {
                         new org.apache.http.HttpHost(elasticsearch.getHost(), elasticsearch.getMappedPort(9200), "http")
                 )
         );
-        String apiKey = "471b8e74-26e5-4a1c-89c3-1640a4716009";
-        cryptoDataService = new CryptoDataService(apiKey, client);
+        cryptoDataService = new CryptoDataService(client);
     }
 
     /**

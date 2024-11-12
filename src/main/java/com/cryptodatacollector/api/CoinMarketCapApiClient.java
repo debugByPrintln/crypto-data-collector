@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
 import org.apache.http.NameValuePair;
@@ -30,17 +31,14 @@ import java.util.List;
  * @version 1.0
  */
 public class CoinMarketCapApiClient {
-    private static final String API_URL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest";
-    private final String apiKey;
+    private static final String apiUrl = Dotenv.load().get("API_URL");
+    private static final String apiKey = Dotenv.load().get("API_KEY");
     private final Gson gson;
 
     /**
      * Конструктор класса CoinMarketCapApiClient.
-     *
-     * @param apiKey API ключ для доступа к CoinMarketCap API.
      */
-    public CoinMarketCapApiClient(String apiKey) {
-        this.apiKey = apiKey;
+    public CoinMarketCapApiClient() {
         this.gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
                 .create();
@@ -55,11 +53,13 @@ public class CoinMarketCapApiClient {
      */
     public JsonArray fetchCryptoData() throws IOException, URISyntaxException {
         List<NameValuePair> parameters = new ArrayList<>();
+
+        // При необходимости, параметры запроса можно изменить
         parameters.add(new BasicNameValuePair("start", "1"));
         parameters.add(new BasicNameValuePair("limit", "3"));
         parameters.add(new BasicNameValuePair("convert", "USD"));
 
-        String responseContent = makeAPICall(API_URL, parameters);
+        String responseContent = makeAPICall(apiUrl, parameters);
         JsonObject responseJson = gson.fromJson(responseContent, JsonObject.class);
 
         if (!responseJson.has("data") || !responseJson.get("data").isJsonArray()) {

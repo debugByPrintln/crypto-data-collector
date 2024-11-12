@@ -25,8 +25,8 @@ public class CryptoDataService {
      * @param apiKey API ключ для доступа к CoinMarketCap API.
      * @param client Экземпляр RestHighLevelClient для взаимодействия с Elasticsearch.
      */
-    public CryptoDataService(String apiKey, RestHighLevelClient client) {
-        this.apiClient = new CoinMarketCapApiClient(apiKey);
+    public CryptoDataService(RestHighLevelClient client) {
+        this.apiClient = new CoinMarketCapApiClient();
         this.indexer = new CryptoDataIndexer(client);
     }
 
