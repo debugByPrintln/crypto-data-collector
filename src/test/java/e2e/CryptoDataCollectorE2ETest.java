@@ -33,7 +33,7 @@ public class CryptoDataCollectorE2ETest {
 
     @Container
     private static final ElasticsearchContainer elasticsearch = new ElasticsearchContainer(
-            DockerImageName.parse(Dotenv.load().get("DOCKER_IMAGE_NAME"))
+            DockerImageName.parse(Dotenv.load().get("TESTCONTAINER_DOCKER_IMAGE_NAME"))
     );
 
     private RestHighLevelClient client;

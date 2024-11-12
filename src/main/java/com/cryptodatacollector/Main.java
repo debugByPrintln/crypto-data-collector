@@ -39,7 +39,7 @@ public class Main {
 
         DataCollectionScheduler scheduler = new DataCollectionScheduler(cryptoDataService, cryptoDataAnalyzer);
 
-        // Сбор данных производится каждые 30 секунд. При необходимости, значение можно изменить
-        scheduler.startScheduler(30);
+        // Сбор данных производится каждые 30 секунд. При необходимости, значение можно изменить в .env файле
+        scheduler.startScheduler(Integer.parseInt(Dotenv.load().get("DATA_GATHER_INTERVAL_IN_SECONDS")));
     }
 }
