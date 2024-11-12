@@ -23,6 +23,15 @@ Crypto Data Collector — это приложение на Java, которое 
 - Установить интервал для сбора данных в секундах в поле DATA_GATHER_INTERVAL_IN_SECONDS (Обратите внимание, что при базовом плане доступно лишь 30 запросов в минуту)
 - При необходимости, можно изменить API_URL на https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest для доступа к тестовому API.
 
+Для удобства тестирования данное приложение запрашивает информацию только о 3-х криптовалютах. Для того, чтобы запрашивать данные о большем количестве криптовалют, 
+необходимо поменять параметр запроса limit в методе fetchCryptoData() класса CoinMarketCapApiClient() (Например, установить его равным 5000, как показано в примере документации CoinMarketCap API).
+
+```java
+parameters.add(new BasicNameValuePair("start", "1"));
+parameters.add(new BasicNameValuePair("limit", "3")); <-------
+parameters.add(new BasicNameValuePair("convert", "USD"));
+```
+
 ## Запуск тестов
 
 Для запуска тестов необходимо запустить комманду:
